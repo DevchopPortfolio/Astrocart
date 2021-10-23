@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scene_page : MonoBehaviour 
+public class lineCreate_page : MonoBehaviour 
 {
 
 	public GameObject linkToPrefab;
