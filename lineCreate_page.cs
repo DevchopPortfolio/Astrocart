@@ -50,6 +50,7 @@ public class lineCreate_page : MonoBehaviour
 		if (Input.GetMouseButtonDown(1)) 
 		{
 			lineinprogress = false;
+			linepageLink.lineDying = true;
 		}
 
 

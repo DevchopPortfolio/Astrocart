@@ -5,12 +5,18 @@ using UnityEngine;
 public class line_page : MonoBehaviour 
 {
 
+	public bool lineDying;
+	int lineLifespan;
+
 	LineRenderer lr; 		
 	List<Vector2> myList = new List<Vector2> ();
 
 
+
+
 	void Awake () {
 		lr = GetComponent<LineRenderer> ();
+		lineLifespan = 5000;
 	}
 
 
@@ -26,5 +32,21 @@ public class line_page : MonoBehaviour
 		if (myList.Count > 1) { GetComponent<EdgeCollider2D>().points = myList.ToArray(); }
 
 	}
+
+
+	void Update () {
+
+		if (lineDying) {
+			lineLifespan--;
+		}
+
+		if (lineLifespan < 0) {
+			Destroy(gameObject);
+		}
+
+	}
+
+
+
 
 }
