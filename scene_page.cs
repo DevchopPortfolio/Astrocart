@@ -6,6 +6,7 @@ public class scene_page : MonoBehaviour
 {
 
 	public GameObject linkToPrefab;
+	public GameObject linesContainerLink;
 	public bool lineinprogress;
 
 	public GameObject linkToVehicle;
@@ -35,12 +36,14 @@ public class scene_page : MonoBehaviour
 			if (lineinprogress == false) 
 			{
 				lineLink = Instantiate(linkToPrefab);
+				lineLink.transform.SetParent(linesContainerLink.transform);
+
 				linepageLink = lineLink.GetComponent<line_page>();
 			}
 
 			lineinprogress = true;
 			linepageLink.updateLine (Camera.main.ScreenToWorldPoint(Input.mousePosition));
-					
+
 		}
 
 

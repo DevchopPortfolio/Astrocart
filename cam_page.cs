@@ -12,6 +12,11 @@ public class cam_page : MonoBehaviour
 	public Vector3 camMoved;
 
 
+	void Start () {
+		Camera.main.orthographicSize = 30f;
+	}
+	
+
 
 	void Update() 
 	{

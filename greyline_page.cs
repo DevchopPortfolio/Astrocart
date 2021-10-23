@@ -5,7 +5,7 @@ using UnityEngine;
 public class greyline_page : MonoBehaviour {
 
 
-	public LineRenderer glr;
+	LineRenderer lr;
 
 	Vector2 greystartcoords;
 	Vector2 currentcoords;
@@ -15,6 +15,7 @@ public class greyline_page : MonoBehaviour {
 
 	void Start () 
 	{
+		lr = GetComponent<LineRenderer>();
 		greylineinprogress = false;
 	}
 
@@ -36,9 +37,9 @@ public class greyline_page : MonoBehaviour {
 		{
 			currentcoords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			glr.positionCount = 2;
-			glr.SetPosition (0, greystartcoords);
-			glr.SetPosition (1, currentcoords);
+			lr.positionCount = 2;
+			lr.SetPosition (0, greystartcoords);
+			lr.SetPosition (1, currentcoords);
 
 		}
 
@@ -46,7 +47,7 @@ public class greyline_page : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1) && greylineinprogress)
 		{
 			greylineinprogress = false;
-			glr.positionCount = 0;
+			lr.positionCount = 0;
 		}
 
 
