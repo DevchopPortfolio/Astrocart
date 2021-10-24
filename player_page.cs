@@ -71,4 +71,12 @@ public class player_page : MonoBehaviour {
 	}
 
 
+    void OnCollisionEnter (Collision name)
+	// void OnTriggerEnter (Collider name)
+	{
+        // Destroy(gameObject);
+        print("hit");
+	}
+
+
 }

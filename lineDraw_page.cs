@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lineCreate_page : MonoBehaviour 
+public class lineDraw_page : MonoBehaviour 
 {
 
-	public GameObject linkToPrefab;
+	public GameObject linePrefabLink;
 	public GameObject linesContainerLink;
 	public bool lineinprogress;
 
@@ -35,7 +35,7 @@ public class lineCreate_page : MonoBehaviour
 			
 			if (lineinprogress == false) 
 			{
-				lineLink = Instantiate(linkToPrefab);
+				lineLink = Instantiate(linePrefabLink);
 				lineLink.transform.SetParent(linesContainerLink.transform);
 
 				linepageLink = lineLink.GetComponent<line_page>();
