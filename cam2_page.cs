@@ -7,25 +7,19 @@ public class cam2_page : MonoBehaviour
                
     cam_page campageLink;
     public float ParallaxSpeed;
-    public bool outOfBounds;
+    public bool outOfBounds = false;
 
 
     void Start () {                
-        campageLink = FindObjectOfType<cam_page>();
-        outOfBounds = false;
+        campageLink = FindObjectOfType<cam_page>();        
     }
 
 
     void Update() {        
 
-        // transform.position = new Vector3 (
-        //     Mathf.Clamp(transform.position.x, 1981f, 2019f),
-        //     Mathf.Clamp(transform.position.y, 1984f, 2008f),
-        //     transform.position.z
-        // );
-
         outOfBounds = false;
         
+        // check if cam2 is out-of-bounds
         if ((transform.position.y < 1984) || 
             (transform.position.y > 2008) || 
             (transform.position.x < 1981) || 
@@ -35,6 +29,7 @@ public class cam2_page : MonoBehaviour
         }
 
         if (!outOfBounds) {
+            // cam2 matches cam1 movements, but slower
             transform.position += campageLink.camMoved * ParallaxSpeed;
         }
 

@@ -6,8 +6,6 @@ public class food_page : MonoBehaviour
 {
     
     Rigidbody2D rb;
-    
-
 
 
     void Start()
@@ -17,24 +15,23 @@ public class food_page : MonoBehaviour
     }
 
 
-
-
     void FixedUpdate()
-    {        
-        Vector3 myvec = new Vector3(0f, 0f, 2f);
-        rb.MoveRotation( transform.rotation * Quaternion.Euler(myvec));
+    {            
+        // food is constantly rotating
+        rb.MoveRotation(transform.rotation * Quaternion.Euler(new Vector3(0f, 0f, 2f)));
     }
-
 
 		
     void OnTriggerEnter2D (Collider2D incoming)    
-	{   
+	{
       
+        // destory any food that is inside a block
         if (incoming.gameObject.tag == "block") {            
             Destroy(gameObject);
         }
 
-        if (incoming.gameObject.name == "Vehicle") {            
+        // destory food when collected by player
+        if (incoming.gameObject.name == "Cart") {            
             Destroy(gameObject);
         }
 	}

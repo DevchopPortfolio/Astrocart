@@ -12,36 +12,23 @@ public class trackCreate_page : MonoBehaviour
     
     public GameObject foodPrefabLink;
 
-    int gridSize;
-    int tilesCount;
-    float tileSize;
+    int gridSize = 7;               //each tile gets 1 line
+    int tilesCount;                 //total number of tiles
+    float tileSize = 20f;           //size of each tile in meters
     
-    float trackStartRandoPos;        
-    int pointsPerTrackLowest;
-    int pointsPerTrackHighest;
+    // float trackStartRandoPos  = 0.1f;   //randomize start pos of track
+    int pointsPerTrackLowest = 3;       //smallest tracks have this many points
+    int pointsPerTrackHighest = 15;     //largest tracks have this many points
     
-    float trackRandomness;
-    float trackMagnitude;    
+    float trackRandomness = 3f;         //randomness of points
+    float trackMagnitude = 4f;          //minimum horizontal distance between points
     
-
-
 
     void Start()
     {
-        
-        gridSize = 7;
+                
         tilesCount = (int) Mathf.Pow(gridSize, 2);
-        tileSize = 20f; 
-
-        // trackStartRandoPos = 0.1f;        
         
-        pointsPerTrackLowest = 3;
-        pointsPerTrackHighest = 15;        
-        trackRandomness = 3f;
-        trackMagnitude = 4f;
-        
-
-
         for (int p = 0; p<tilesCount; p++) {
 
             lineLink = Instantiate(linePrefabLink);                        
@@ -71,7 +58,5 @@ public class trackCreate_page : MonoBehaviour
                 
             }
         }
-
-    }
-    
+    }    
 }
