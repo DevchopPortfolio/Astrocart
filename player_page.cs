@@ -11,7 +11,7 @@ public class player_page : MonoBehaviour {
 	int flipped = 1;
 
 	Rigidbody2D rb;
-	public trigger_page pageLink;		//this link is populated via dragNdrop - dragging in the gameobject that trigger_page is attached to
+	public trigger_page pageLink;
 
 
 	public GameObject triangle1Link;
@@ -30,29 +30,38 @@ public class player_page : MonoBehaviour {
 
 	void Update () 
 	{
-		
-		if (Input.GetKey("right shift") && pageLink.vehicleHasTraction)
-		{
+
+		if (Input.GetKey("right") || Input.GetKey("d")) {
 			thrusting = true;
+			if (transform.eulerAngles.z < 180f) {			//check if cart is upside down
+				positiveThrust();
+			} else {
+				negativeThrust();
+			}
 		}
 
-
-		if (Input.GetButtonDown("Fire1")) 
-		{
-			flipped = -flipped;
-
-			if (flipped == 1)
-			{
-				triangle1Link.SetActive (true);
-				triangle2Link.SetActive (false);
+		if (Input.GetKey("left") || Input.GetKey("a")) {
+			thrusting = true;
+			if (transform.eulerAngles.z > 180f) {			//check if cart is upside down
+				positiveThrust();
+			} else {
+				negativeThrust();
 			}
-			else
-			{
-				triangle1Link.SetActive (false);
-				triangle2Link.SetActive (true);
-			}
-
 		}
+
+		void positiveThrust () {							//go forwards
+			flipped = 1;
+			triangle1Link.SetActive(true);
+			triangle2Link.SetActive(false);			
+		}
+
+		void negativeThrust () {							//go backwards
+			flipped = -1;
+			triangle1Link.SetActive(false);
+			triangle2Link.SetActive(true);				
+		}
+
+		if (!pageLink.vehicleHasTraction) {thrusting = false;}
 
 	}
 
@@ -62,20 +71,11 @@ public class player_page : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		
-		if (thrusting) 
-		{
+		if (thrusting) {
 			rb.AddForce (-transform.up * thrustForce * flipped);
 			thrusting = false;
 		}
 
-	}
-
-
-    void OnCollisionEnter (Collision name)
-	// void OnTriggerEnter (Collider name)
-	{
-        // Destroy(gameObject);
-        print("hit");
 	}
 
 
