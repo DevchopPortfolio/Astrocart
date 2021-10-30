@@ -5,20 +5,25 @@ using UnityEngine;
 public class cart_page : MonoBehaviour {
 
 
-	public float thrustForce;
+	Rigidbody2D rb;
+	public trigger_page pageLink;
+	public GameObject triangle1Link;
+	public GameObject triangle2Link;
+
+	manager_page managerpageLink;
+
+	Vector3 cartStartPos;
+	float thrustForce = 12f;
 	bool thrusting;
 	int flipped = 1;
 
-	Rigidbody2D rb;
-	public trigger_page pageLink;
-
-	public GameObject triangle1Link;
-	public GameObject triangle2Link;
 
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D> ();
+		cartStartPos = transform.position;		
+		managerpageLink = GameObject.Find("page holder").GetComponent<manager_page>();
 	}
 
 
@@ -62,19 +67,30 @@ public class cart_page : MonoBehaviour {
 		// only move if cart has traction
 		if (!pageLink.vehicleHasTraction) {thrusting = false;}
 
+		
+		// reset position when player presses T
+		if (Input.GetKey("t")) {
+			transform.position = cartStartPos;		
+		}
+		
+		// reset cart position when manager requets a reset
+		if (managerpageLink.resetStatus == 2) {
+			transform.position = cartStartPos;			
+		}
+
 	}
+
 
 
 
 	void FixedUpdate ()
-	{		
-		
+	{
+
 		// applies cart's movement to cart's position
 		if (thrusting) {
 			rb.AddForce (-transform.up * thrustForce * flipped);
-			thrusting = false;
+			thrusting = false;			
 		}
 	}
-
 
 }

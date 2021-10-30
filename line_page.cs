@@ -6,7 +6,7 @@ public class line_page : MonoBehaviour
 {
 
 	public bool lineDying;	
-	int lineLifespan = 3000;
+	int lineLifespan = 1800;
 	int thisLineAge = 0;
 	
 	LineRenderer lr; 			
